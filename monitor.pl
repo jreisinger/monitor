@@ -1,20 +1,21 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Test::More 'no_plan';
-use OH::Monitor::Disk qw(disk_free);
-use OH::Monitor::Uptime qw(is_up);
+use TAP::Harness;
 
-my @hosts = qw[ prod1.openhouse.sk localhost prod.openhouse.sk ];
+# Set merge => 1 not to see STDERR (test results' comments)
+my $harness = TAP::Harness->new( { verbosity => -3, merge => 0 } );
+my @tests = glob "t/*.t";
 
-for my $host (@hosts) {
-    is( is_up($host), 'ok', "'$host' is up" );
-    is( disk_free( $host, 80 ), 'ok', "'$host' has enough disk space" );
+$harness->callback( made_parser => \&hijack_parser );
+$harness->runtests(@tests);
+
+sub hijack_parser {
+    my ( $parser, $test_ref ) = @_;
+    while ( my $result = $parser->next ) {
+        $result->is_test or next;
+        $result->is_actual_ok and next;
+        ( my $description = $result->description ) =~ s/- //;
+        print "We got trouble with '$description' in $test_ref->[1]\n";
+    }
 }
-
-__END__
-use OH::File::Integrity qw(check_f re_check_f);
-
-my @files = qw(/etc/passwd /etc/group1 /etc/nsswitch.conf /tmp/passwd);
-check_f(@files);
-re_check_f();
