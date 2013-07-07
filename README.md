@@ -1,7 +1,10 @@
-monitor
-=======
+# Monitor
 
-Server monitoring
+Simple server/network moniting based on testing framework that comes with Perl. For more see
+
+* [Checking your website's health, part 2](http://www.stonehenge.com/merlyn/LinuxMag/col54.html)
+* [Intercepting TAP output](http://perlmonks.org/?node_id=685378)
+* [Automating System Administration with Perl, 2nd Edition](http://shop.oreilly.com/product/9780596006396.do) (p. 522)
 
 ## Installation
 
