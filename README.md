@@ -17,3 +17,8 @@ machine) authorized keys:
 * local host: `~/.ssh/id_rsa.pub`
 * remote host: `/root/.ssh/authorized_keys`
 
+### Hosts to monitor
+
+Define hosts you want to monitor in `t/.conf.yml`:
+
+    hosts: localhost host1.domain.com host2.domain.org
