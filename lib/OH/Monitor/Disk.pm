@@ -8,7 +8,7 @@ use Net::SSH qw(ssh_cmd);
 sub disk_free {
     my $host      = shift;
     my $threshold = shift;     # % of disk space
-    my $cmd       = "df -h";
+    my $cmd       = "df -hP";
 
     # ssh_cmd - STDOUT returned as single string STDERR throws fatal error
     my @df_lines =
