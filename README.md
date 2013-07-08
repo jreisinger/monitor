@@ -44,7 +44,7 @@ Put configuration into `t/.conf.yml`:
 
 Ad hoc checks
 
-    ./monitor.pl
+    ./monitor.pl adhoc
 
 Regular checks, i.e. monitoring
 

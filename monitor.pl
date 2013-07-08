@@ -19,9 +19,12 @@ my $ALL_CLEAR_INTERVAL = $config->{'repeat-message'}->{'all-clear'};
 my $TEST_FAIL_INTERVAL = $config->{'repeat-message'}->{'troubles'};
 my $email              = $config->{email};
 
+my $adhoc = shift // undef;
+
 sub SEND_REPORT {    # what do I do with a report?
-    ##open STDOUT, "|mail -s 'monitor' $email" or die "sendmail: $!";
-    open STDOUT, "|mail -s 'monitor' $email" or die "sendmail: $!";
+    open STDOUT, "|mail -s 'monitor' $email"
+      or die "sendmail: $!"
+      unless $adhoc;
     @_ = "ALL CLEAR\n" unless @_;
     print @_;
 }
