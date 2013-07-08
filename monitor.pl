@@ -26,6 +26,7 @@ sub SEND_REPORT {    # what do I do with a report?
       or die "sendmail: $!"
       unless $adhoc;
     @_ = "ALL CLEAR\n" unless @_;
+    push @_, "\n";
     print @_;
 }
 
