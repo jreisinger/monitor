@@ -25,6 +25,6 @@ use OH::Monitor::Disk qw(disk_free);
 use OH::Monitor::Uptime qw(is_up);
 
 for my $host (@hosts) {
-    is( is_up($host), 'ok', "$host is up" );
-    is( disk_free( $host, 80 ), 'ok', "$host has enough disk space" );
+    is( is_up($host), 'ok', "$host is down" );
+    is( disk_free( $host, 80 ), 'ok', "$host is low on disk space" );
 }
