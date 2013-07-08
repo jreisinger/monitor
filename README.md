@@ -1,10 +1,14 @@
 # Monitor
 
-Simple server/network moniting based on testing framework that comes with Perl. For more see
+Simple server/network moniting based on testing framework that comes with Perl.
+Based on (stolen from :-)):
 
 * [Checking your website's health, part 2](http://www.stonehenge.com/merlyn/LinuxMag/col54.html)
 * [Intercepting TAP output](http://perlmonks.org/?node_id=685378)
 * [Automating System Administration with Perl, 2nd Edition](http://shop.oreilly.com/product/9780596006396.do) (p. 522)
+
+Tests (checks) stored in `t` are run and evaluated by `monitor.pl`. Subroutines used by
+tests are in `lib`.
 
 ## Installation
 
@@ -35,3 +39,16 @@ Put configuration into `t/.conf.yml`:
         all-clear: never
         # how often to repeat test failed
         troubles: 15 seconds
+
+## Usage
+
+Ad hoc checks
+
+    ./monitor.pl
+
+Regular checks, i.e. monitoring
+
+    $ crontab -l
+
+    # monitor servers
+    */5 * * * *     /paht/to/monitor.pl
