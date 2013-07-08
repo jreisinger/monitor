@@ -13,7 +13,7 @@ my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
 # load yaml into perl hashRef
 my $config = Load($content);
 
-my @hosts = split /\s+/, $config->{hosts};
+my @hosts = @{$config->{hosts}};
 
 use Test::More 'no_plan';
 
