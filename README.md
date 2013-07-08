@@ -17,8 +17,21 @@ machine) authorized keys:
 * local host: `~/.ssh/id_rsa.pub`
 * remote host: `/root/.ssh/authorized_keys`
 
-### Hosts to monitor
+### Configuration file
 
-Define hosts you want to monitor in `t/.conf.yml`:
+Put configuration into `t/.conf.yml`:
 
-    hosts: localhost host1.domain.com host2.domain.org
+    # send reports to this address
+    email: jeffrey.lebowski@dude.com
+
+    # hosts to monitor
+    hosts:
+        - localhost
+        - host.domain.com
+        - host2.domain.org
+
+    repeat-message:
+        # how often to repeat "all clear" message
+        all-clear: never
+        # how often to repeat test failed
+        troubles: 15 seconds
