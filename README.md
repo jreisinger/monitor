@@ -1,6 +1,6 @@
 # Monitor
 
-Simple server/network moniting based on testing framework that comes with Perl.
+Simple server/network monitoring based on [testing framework](http://perldoc.perl.org/Test/More.html) that comes with Perl.
 Based on (stolen from :-)):
 
 * [Checking your website's health, part 2](http://www.stonehenge.com/merlyn/LinuxMag/col54.html)
