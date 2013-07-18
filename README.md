@@ -38,7 +38,7 @@ Put configuration into `t/.conf.yml`:
         # how often to repeat "all clear" message
         all-clear: never
         # how often to repeat test failed
-        troubles: 15 seconds
+        troubles: 30 minutes
 
 ## Usage
 
