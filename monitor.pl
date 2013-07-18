@@ -70,7 +70,7 @@ my $report = join "\n", map $_->[0] . " => " . $_->[1], @troubles;
 my $cache = Cache::FileCache->new( { namespace => 'healthcheck_reporter' } );
 
 if ($report) {    # we got trouble
-    $cache->remove("");    # delete data associated with "" from cache
+    $cache->remove("");    # delete data associated with "" (good report) from cache
     if ( $cache->get($report) ) {
 
         ##print "This bad report has been seen (resent in $TEST_FAIL_INTERVAL)\n";
