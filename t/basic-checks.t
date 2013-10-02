@@ -13,7 +13,7 @@ my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
 # load yaml into perl hashRef
 my $config = Load($content);
 
-my @hosts = @{$config->{hosts}};
+my @hosts = @{ $config->{hosts} };
 
 use Test::More 'no_plan';
 
@@ -26,5 +26,7 @@ use OH::Monitor::Uptime qw(is_up);
 
 for my $host (@hosts) {
     is( is_up($host), 'ok', "$host is down" );
-    is( disk_free( $host, 80 ), 'ok', "$host is low on disk space" );
+
+    my @disks = disk_free( $host, 80 );
+    is( $disks[0], 'ok', "$host is low on disk space (@disks)" );
 }
