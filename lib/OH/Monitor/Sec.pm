@@ -29,8 +29,11 @@ sub last_from {
     }
 
     for my $user ( sort keys %origins ) {
-        my @uniq_from = uniq @{ $origins{$user} };
-        if ( @uniq_from == 1 ) {
+
+        # remove duplicated origins
+        @{ $origins{$user} } = uniq @{ $origins{$user} };
+
+        if ( @{ $origins{$user} } == 1 ) {
             delete $origins{$user};
         }
     }
