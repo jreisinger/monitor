@@ -56,8 +56,8 @@ sub last_from {
         delete $temp{$_} for @ok_origins;
         @{ $origins{$user} } = keys %temp;
 
-        # remove users who have logged in from 1 origin only
-        if ( @{ $origins{$user} } == 1 ) {
+        # remove users who have logged in from 1 unknown origin only
+        if ( @{ $origins{$user} } <= 1 ) {
             delete $origins{$user};
         }
     }
