@@ -40,6 +40,12 @@ Put configuration into `t/.conf.yml`:
         # how often to repeat test failed
         troubles: 30 minutes
 
+    # configuration of checks
+    sec-checks:
+        ok-origins:
+            - localhost
+            - known-host.org
+
 ## Usage
 
 Ad hoc checks:
