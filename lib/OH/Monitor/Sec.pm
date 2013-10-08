@@ -33,7 +33,7 @@ sub last_from {
       : eval { ssh_cmd( "root\@$host", $cmd ) };
 
     # collect login origins for different users
-    my %origins;    # user => [ qw(host1 host2) ]
+    my %origins;    # an entry looks like this: user => [ qw(host1 host2) ]
     for ( split '\n', $cmd_lines ) {
 
         # skip uninteresting lines
@@ -56,8 +56,8 @@ sub last_from {
         delete $temp{$_} for @ok_origins;
         @{ $origins{$user} } = keys %temp;
 
-        # remove users who have logged in from 1 unknown origin only
-        if ( @{ $origins{$user} } <= 1 ) {
+        # remove users who have only logged in from known origins
+        if ( @{ $origins{$user} } == 0 ) {
             delete $origins{$user};
         }
     }

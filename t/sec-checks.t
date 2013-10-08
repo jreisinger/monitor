@@ -25,5 +25,5 @@ use OH::Monitor::Sec qw(last_from);
 
 for my $host (@hosts) {
     my $from = last_from( $host );
-    is( $from, 'ok', "login from different origins on $host\n" . Dumper $from );
+    is( $from, 'ok', "login from unknown origin(s) on $host\n" . Dumper $from );
 }
