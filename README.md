@@ -25,7 +25,7 @@ machine) authorized keys:
 
 Put configuration into `t/.conf.yml`:
 
-    # send reports to this address
+    # send report to this address
     email: jeffrey.lebowski@dude.com
 
     # hosts to monitor
@@ -34,6 +34,8 @@ Put configuration into `t/.conf.yml`:
         - host.domain.com
         - host2.domain.org
 
+    # report sending intervals
+    # (see set() method from Cache::Cache for time info)
     repeat-message:
         # how often to repeat "all clear" message
         all-clear: never
