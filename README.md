@@ -47,6 +47,13 @@ Put configuration into `t/.conf.yml`:
         ok-origins:
             - localhost
             - known-host.org
+        ok-ports:
+            localhost:
+                - 22/tcp
+            host.domain.com:
+            host2.domain.org:
+                - 22/tcp
+                - 80/tcp
 
 ## Usage
 

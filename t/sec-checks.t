@@ -21,9 +21,14 @@ use Test::More 'no_plan';
 use Cwd qw(abs_path);
 use lib dirname( dirname abs_path $0) . '/lib';
 
-use OH::Monitor::Sec qw(last_from);
+use OH::Monitor::Sec qw(last_from net_scan);
 
 for my $host (@hosts) {
-    my $from = last_from( $host );
+    my $from = last_from($host);
     is( $from, 'ok', "login from unknown origin(s) on $host\n" . Dumper $from );
+}
+
+for my $host (@hosts) {
+    my @ports = net_scan($host);
+    is( $ports[0], 'ok', "unexpected open ports on $host (@ports)" );
 }

@@ -1,7 +1,7 @@
 package OH::Monitor::Sec;
 
 use Exporter qw(import);
-our @EXPORT_OK = qw (last_from);
+our @EXPORT_OK = qw(last_from net_scan);
 
 use Net::SSH qw(ssh_cmd);
 use List::MoreUtils qw(uniq);
@@ -68,6 +68,42 @@ sub last_from {
     # return check result
     if ( keys %origins ) {
         return \%origins;    # ref to HoA
+    } else {
+        return 'ok';
+    }
+}
+
+# find ports that are no supposed to be open
+sub net_scan {
+    my $host = shift;
+
+    my $cmd = "/usr/bin/nmap $host";
+
+    # run $cmd system command locally
+    my $cmd_lines = `$cmd`;
+    die "No output from command '$cmd' for host '$host'" unless $cmd_lines;
+
+    # find out open ports
+    my @open;
+    for ( split '\n', $cmd_lines ) {
+
+        # skip uninteresting lines
+        next unless /^\d/;
+
+        my ( $port, $state, $service ) = split;
+        push @open, $port if $state eq 'open';
+    }
+
+    # remove ports supposed to be open (set in t/.conf.yml)
+    my %temp     = map { $_, 1 } @open;
+    my $config   = _load_config();
+    my @ok_ports = @{ $config->{'sec-checks'}->{'ok-ports'}->{$host} };
+    delete $temp{$_} for @ok_ports;
+    @open = keys %temp;
+
+    # return check result
+    if (@open) {
+        return sort { $a <=> $b } @open;
     } else {
         return 'ok';
     }
