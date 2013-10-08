@@ -26,11 +26,14 @@ sub last_from {
     my $cmd  = 'last -aw';
 
     # run $cmd system command locally or remotely
+    my $login = getlogin || getpwuid($<);
     my $cmd_lines = ( $host eq 'localhost' )
       ? `$cmd`
 
       # ssh_cmd - STDOUT returned as single string STDERR throws fatal error
-      : eval { ssh_cmd( "root\@$host", $cmd ) };
+      : eval { ssh_cmd( "$login\@$host", $cmd ) };
+
+    die "No output from command '$cmd' for host '$host'" unless $cmd_lines;
 
     # collect login origins for different users
     my %origins;    # an entry looks like this: user => [ qw(host1 host2) ]

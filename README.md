@@ -19,7 +19,7 @@ In order to login to remote servers without password, copy your public key
 machine) authorized keys:
 
 * local host: `~/.ssh/id_rsa.pub`
-* remote host: `/root/.ssh/authorized_keys`
+* remote host: `~/.ssh/authorized_keys`
 
 ### Configuration file
 
