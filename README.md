@@ -30,7 +30,6 @@ Put configuration into `t/.conf.yml`:
 
     # hosts to monitor
     hosts:
-        - localhost
         - host.domain.com
         - host2.domain.org
 
@@ -45,11 +44,9 @@ Put configuration into `t/.conf.yml`:
     # configuration of checks
     sec-checks:
         ok-origins:
-            - localhost
             - known-host.org
+            - known2-host.org
         ok-ports:
-            localhost:
-                - 22/tcp
             host.domain.com:
             host2.domain.org:
                 - 22/tcp
