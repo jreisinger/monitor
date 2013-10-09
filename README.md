@@ -68,3 +68,7 @@ Regular checks, i.e. monitoring:
 If you're developing new checks or debugging old ones:
 
     $ perl t/<check>.t
+
+or
+
+    $ prove -l
