@@ -51,6 +51,9 @@ Put configuration into `t/.conf.yml`:
             host2.domain.org:
                 - 22/tcp
                 - 80/tcp
+        monitor-files:
+            - /etc/passwd
+            - /etc/shadow
 
 ## Usage
 
