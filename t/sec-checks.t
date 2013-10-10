@@ -22,6 +22,7 @@ use Cwd qw(abs_path);
 use lib dirname( dirname abs_path $0) . '/lib';
 
 use OH::Monitor::Sec qw(last_from net_scan);
+use OH::Monitor::File qw(check_integrity);
 
 for my $host (@hosts) {
     my $from = last_from($host);
@@ -31,4 +32,9 @@ for my $host (@hosts) {
 for my $host (@hosts) {
     my @ports = net_scan($host);
     is( $ports[0], 'ok', "unexpected open ports on $host (@ports)" );
+}
+
+for my $host (@hosts) {
+    my @changed = check_integrity($host);
+    is( $changed[0], 'ok', "monitored file(s) on $host changed (@changed)" );
 }
