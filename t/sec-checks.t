@@ -34,7 +34,7 @@ for my $host (@hosts) {
     is( $ports[0], 'ok', "unexpected open ports on $host (@ports)" );
 }
 
-for my $host (@hosts) {
-    my @changed = check_integrity($host);
-    is( $changed[0], 'ok', "monitored file(s) on $host changed (@changed)" );
-}
+my $host    = 'localhost';
+my @changed = check_integrity($host);
+is( $changed[0], 'ok',
+    "monitored file(s) on $host changed\n" . Dumper @changed );

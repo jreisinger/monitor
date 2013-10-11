@@ -51,9 +51,9 @@ sub check_integrity {
 sub _create_checksum {
     my $files = shift;    # aref
 
-    if ( !-e $checksum_file ) {
-        die "$checksum_file does not exist!";
-    }
+    die "$checksum_file does not exist!" unless -e $checksum_file;
+    die "$checksum_file has to have 600 permissions!"
+      if ( ( stat($checksum_file) )[2] & 0777 ) & 066;
 
     # get already checksummed files
     my @checksummed_files;
