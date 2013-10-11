@@ -5,6 +5,7 @@ use Getopt::Std;
 use Digest::SHA;
 use File::Basename qw(basename dirname);
 use YAML qw(Load);
+use File::Find;
 
 use Exporter qw(import);
 our @EXPORT_OK = qw(check_integrity);
@@ -30,15 +31,14 @@ sub _load_config {
 
 sub check_integrity {
 
+    # get files to monitor
     my $config = _load_config();
-    my $files  = [ @{ $config->{'sec-checks'}->{'monitor-files'} } ];
+    my @dirs   = @{ $config->{'sec-checks'}->{'monitor-dirs'} };
+    my @files;
+    no warnings "File::Find";    # don't report directories I can't cd into
+    find( sub { push @files, $File::Find::name if -f && -r _ && !-l }, @dirs );
 
-    # is file checksummed?
-    #   N: show how to create it
-    #   Y: compare checksums - do differ?
-    #       Y: - not ok
-    #       N: - ok
-    _create_checksum($files);
+    _create_checksum( [@files] );
 
     my $rv = _check_checksum();
     if ($rv) {
