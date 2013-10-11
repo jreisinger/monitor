@@ -73,7 +73,7 @@ sub _create_checksum {
             next;
         }
 
-        my $digest = Digest::SHA->new(256)->addfile( $file, 'p' )->hexdigest;
+        my $digest = Digest::SHA->new(256)->addfile($file)->hexdigest;
         print $fh_out $file, '|',
           join( '|', ( lstat($file) )[ 0 .. 7, 9 .. 12 ] ),
           "|$digest", "\n";
