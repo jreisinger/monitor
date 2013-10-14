@@ -38,6 +38,12 @@ sub check_integrity {
     no warnings "File::Find";    # don't report directories I can't cd into
     find( sub { push @files, $File::Find::name if -f && -r _ && !-l }, @dirs );
 
+    # remove files you don't want to monitor
+    my @exceptions = @{ $config->{'sec-checks'}->{'monitor-exceptions'} };
+    my %lookup_hash;
+    @lookup_hash{@exceptions} = ();    # initialise the hash using a slice
+    @files = grep { not exists $lookup_hash{$_} } @files;
+
     _create_checksum( [@files] );
 
     my $rv = _check_checksum();
