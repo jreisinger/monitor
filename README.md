@@ -58,6 +58,8 @@ Put configuration into `t/.conf.yml`:
             - /etc
             - /lib
             - /sbin
+        monitor-exceptions:
+            - /etc/resolv.conf
 
 ## Usage
 
