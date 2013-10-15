@@ -97,11 +97,15 @@ sub _check_checksum {
     while (<$CFILE>) {
         chomp;
         my @savedstats = split('\|');
-        die "Wrong number of fields in line beginning with $savedstats[0]\n"
+        my $filename   = $savedstats[0];
+
+        die "Wrong number of fields in line beginning with $filename\n"
           unless ( scalar @savedstats == 14 );
-        my @currentstats = ( lstat( $savedstats[0] ) )[ 0 .. 7, 9 .. 12 ];
+        die "$filename disappeared\n" unless -e $filename;
+
+        my @currentstats = ( lstat($filename) )[ 0 .. 7, 9 .. 12 ];
         push( @currentstats,
-            Digest::SHA->new(256)->addfile( $savedstats[0] )->hexdigest );
+            Digest::SHA->new(256)->addfile($filename)->hexdigest );
 
         if ( "@savedstats[1..13]" ne "@currentstats" ) {
             push @changed, _what_changed( \@savedstats, \@currentstats );
