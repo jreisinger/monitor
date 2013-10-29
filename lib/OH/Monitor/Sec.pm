@@ -1,5 +1,6 @@
 package OH::Monitor::Sec;
 
+use strict;
 use Exporter qw(import);
 our @EXPORT_OK = qw(last_from net_scan);
 
