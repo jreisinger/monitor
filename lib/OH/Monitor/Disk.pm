@@ -1,5 +1,6 @@
 package OH::Monitor::Disk;
 
+use strict;
 use Exporter qw(import);
 our @EXPORT_OK = qw (disk_free);
 

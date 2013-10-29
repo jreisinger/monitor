@@ -4,3 +4,4 @@ argv = -ce
 
 [PerlCritic]
 select = **/*.{pl,pm,t}
+argv = --verbose 10
