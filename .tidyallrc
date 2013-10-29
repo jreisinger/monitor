@@ -1,0 +1,6 @@
+[PerlTidy]
+select = **/*.{pl,pm,t}
+argv = -ce
+
+[PerlCritic]
+select = **/*.{pl,pm,t}
