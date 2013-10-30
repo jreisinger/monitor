@@ -104,7 +104,8 @@ sub net_scan {
 
     # return check result
     if (@open) {
-        return sort { $a <=> $b } @open;
+        my @sorted = sort { $a <=> $b } @open;
+        return @sorted;
     } else {
         return 'ok';
     }
