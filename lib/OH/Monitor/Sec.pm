@@ -96,9 +96,12 @@ sub net_scan {
     }
 
     # remove ports supposed to be open (set in t/.conf.yml)
-    my %temp     = map { $_, 1 } @open;
-    my $config   = _load_config();
-    my @ok_ports = @{ $config->{'sec-checks'}->{'ok-ports'}->{$host} };
+    my %temp = map { $_, 1 } @open;
+    my $config = _load_config();
+    my @ok_ports;
+    if ( defined $config->{'sec-checks'}->{'ok-ports'}->{$host} ) {
+        @ok_ports = @{ $config->{'sec-checks'}->{'ok-ports'}->{$host} };
+    }
     delete $temp{$_} for @ok_ports;
     @open = keys %temp;
 
