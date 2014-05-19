@@ -61,6 +61,10 @@ Put configuration into `t/.conf.yml`:
         monitor-exceptions:
             - /etc/resolv.conf
 
+    # Do following users have unread email?
+    mail:
+        - username
+
 ## Usage
 
 Ad hoc checks:
