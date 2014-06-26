@@ -44,8 +44,10 @@ Put configuration into `t/.conf.yml`:
     # configuration of checks
     sec-checks:
         ok-origins:
-            - known-host.org
-            - known2-host.org
+            ## private IPs
+            - 0.0.0.0
+            - 192.168.1.1
+            ## public IPs
         ok-ports:
             host.domain.com:
             host2.domain.org:

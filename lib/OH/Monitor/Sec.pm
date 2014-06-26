@@ -24,7 +24,7 @@ sub _load_config {
 # Check whether user has logged in from different hosts using the last system command.
 sub last_from {
     my $host = shift;
-    my $cmd  = 'last -aw';
+    my $cmd  = 'last -awi';
 
     # run $cmd system command locally or remotely
     my $login = getlogin || getpwuid($<);
