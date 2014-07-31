@@ -1,4 +1,4 @@
-package OH::Monitor::Mail;
+package Monitor::Mail;
 
 use strict;
 use Exporter qw(import);

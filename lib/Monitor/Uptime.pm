@@ -1,4 +1,4 @@
-package OH::Monitor::Uptime;
+package Monitor::Uptime;
 
 use strict;
 use Exporter qw(import);

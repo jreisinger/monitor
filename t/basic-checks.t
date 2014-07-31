@@ -21,9 +21,9 @@ use Test::More 'no_plan';
 use Cwd qw(abs_path);
 use lib dirname( dirname abs_path $0) . '/lib';
 
-use OH::Monitor::Disk qw(disk_free);
-use OH::Monitor::Uptime qw(is_up);
-use OH::Monitor::Mail qw(unread_mail);
+use Monitor::Disk qw(disk_free);
+use Monitor::Uptime qw(is_up);
+use Monitor::Mail qw(unread_mail);
 
 for my $host (@hosts) {
     is( is_up($host), 'ok', "$host is down" );

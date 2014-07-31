@@ -1,4 +1,4 @@
-package OH::Monitor::Disk;
+package Monitor::Disk;
 
 use strict;
 use Exporter qw(import);

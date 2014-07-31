@@ -1,4 +1,4 @@
-package OH::Monitor::Sec;
+package Monitor::Sec;
 
 use strict;
 use Exporter qw(import);
@@ -13,7 +13,7 @@ use YAML qw(Load);
 sub _load_config {
 
     my $conf_file =
-      dirname( $INC{'OH/Monitor/Sec.pm'} ) . '/../../../t/' . '.conf.yml';
+      dirname( $INC{'Monitor/Sec.pm'} ) . '/../../../t/' . '.conf.yml';
     die "'$conf_file' problem: $!" unless -e $conf_file;
     my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
     my $config = Load($content);

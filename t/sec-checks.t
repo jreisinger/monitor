@@ -21,8 +21,8 @@ use Test::More 'no_plan';
 use Cwd qw(abs_path);
 use lib dirname( dirname abs_path $0) . '/lib';
 
-use OH::Monitor::Sec qw(last_from net_scan);
-use OH::Monitor::File qw(check_integrity);
+use Monitor::Sec qw(last_from net_scan);
+use Monitor::File qw(check_integrity);
 
 for my $host (@hosts) {
     my $from = last_from($host);
