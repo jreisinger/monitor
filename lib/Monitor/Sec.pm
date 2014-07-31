@@ -13,7 +13,7 @@ use YAML qw(Load);
 sub _load_config {
 
     my $conf_file =
-      dirname( $INC{'Monitor/Sec.pm'} ) . '/../../../t/' . '.conf.yml';
+      dirname( $INC{'Monitor/Sec.pm'} ) . '/../../' . 'monitor.yml';
     die "'$conf_file' problem: $!" unless -e $conf_file;
     my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
     my $config = Load($content);
@@ -53,7 +53,7 @@ sub last_from {
         # remove duplicated origins
         @{ $origins{$user} } = uniq @{ $origins{$user} };
 
-        # remove known origins (set in t/.conf.yml)
+        # remove known origins (set in monitor.yml)
         my %temp       = map { $_, 1 } @{ $origins{$user} };
         my $config     = _load_config();
         my @ok_origins = @{ $config->{'sec-checks'}->{'ok-origins'} };
@@ -95,7 +95,7 @@ sub net_scan {
         push @open, $port if $state eq 'open';
     }
 
-    # remove ports supposed to be open (set in t/.conf.yml)
+    # remove ports supposed to be open (set in monitor.yml)
     my %temp = map { $_, 1 } @open;
     my $config = _load_config();
     my @ok_ports;

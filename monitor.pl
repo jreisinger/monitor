@@ -11,7 +11,7 @@ $|++;
 ## CONFIG
 
 # load configuration from config file
-my $conf_file = File::Spec->catfile( dirname($0), "t", ".conf.yml" );
+my $conf_file = File::Spec->catfile( dirname($0), "monitor.yml" );
 die "'$conf_file' problem: $!" unless -e $conf_file;
 my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
 my $config = Load($content);

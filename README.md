@@ -23,7 +23,7 @@ machine) authorized keys:
 
 ### Configuration file
 
-Put configuration into `t/.conf.yml`:
+Put configuration into `monitor.yml`:
 
     # send report to this address
     email: jeffrey.lebowski@dude.com
@@ -78,7 +78,7 @@ Regular checks, i.e. monitoring:
     $ crontab -l
 
     # monitor servers
-    */5 * * * *     /paht/to/monitor.pl
+    */5 * * * *     /path/to/monitor.pl
 
 If you're developing new checks or debugging old ones:
 

@@ -21,7 +21,7 @@ my $checksum_file = $ENV{HOME} . "/.monitor-checksum";
 sub _load_config {
 
     my $conf_file =
-      dirname( $INC{'Monitor/File.pm'} ) . '/../../../t/' . '.conf.yml';
+      dirname( $INC{'Monitor/File.pm'} ) . '/../../' . 'monitor.yml';
     die "'$conf_file' problem: $!" unless -e $conf_file;
     my $content = eval { local ( @ARGV, $/ ) = ($conf_file); <>; };
     my $config = Load($content);
