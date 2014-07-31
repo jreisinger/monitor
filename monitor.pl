@@ -25,10 +25,8 @@ my $TEST_FAIL_INTERVAL = $config->{'repeat-message'}->{'troubles'};
 my $adhoc = shift // undef;
 
 sub SEND_REPORT {    # what do I do with a report?
-    unless ($adhoc) {
-        open STDOUT, "|mail -s 'monitor' $email"
-          or die "sendmail: $!";
-    }
+    open STDOUT, "|mail -s 'monitor' $email"
+      or die "sendmail: $!";
     @_ = "ALL CLEAR\n" unless @_;
     push @_, "\n";
     print @_;
@@ -70,7 +68,8 @@ my $report = join "\n", map $_->[0] . " => " . $_->[1], @troubles;
 my $cache = Cache::FileCache->new( { namespace => 'healthcheck_reporter' } );
 
 if ($report) {    # we got trouble
-    $cache->remove("");    # delete data associated with "" (good report) from cache
+    $cache->remove("")
+      ;           # delete data associated with "" (good report) from cache
     if ( $cache->get($report) ) {
 
         ##print "This bad report has been seen (resent in $TEST_FAIL_INTERVAL)\n";
@@ -79,7 +78,7 @@ if ($report) {    # we got trouble
         $cache->set( $report, 1, $TEST_FAIL_INTERVAL );
         SEND_REPORT($report);
     }
-} else {    # all clear
+} else {          # all clear
     if ( $cache->get("") ) {    # already said good?
         ##print "This good report has been seen (resent in $ALL_CLEAR_INTERVAL)\n";
     } else {

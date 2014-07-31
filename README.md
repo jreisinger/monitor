@@ -69,10 +69,6 @@ Put configuration into `monitor.yml`:
 
 ## Usage
 
-Ad hoc checks:
-
-    $ ./monitor.pl adhoc
-
 Regular checks, i.e. monitoring:
 
     $ crontab -l
